@@ -1,12 +1,16 @@
 #!/bin/bash
 set -e
 
+# 获取脚本所在目录的绝对路径
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+CONFIG_DIR="$SCRIPT_DIR/../config"
+
 # 创建 supervisor 配置目录
 mkdir -p /etc/supervisor/conf.d
 
 # 复制 supervisor 配置文件
-cp /workspace/config/supervisord.conf /etc/supervisor/supervisord.conf
-cp /workspace/config/conf.d/*.conf /etc/supervisor/conf.d/
+# cp "$CONFIG_DIR/supervisord.conf" /etc/supervisor/supervisord.conf
+cp "$CONFIG_DIR/conf.d/"*.conf /etc/supervisor/conf.d/
 
 # 创建日志目录
 mkdir -p /var/log/supervisor
