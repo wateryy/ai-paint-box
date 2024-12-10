@@ -22,13 +22,16 @@ check_cuda() {
     fi
 
     CUDA_VERSION=$(nvcc --version | grep "release" | awk '{print $6}' | cut -c2-)
-    REQUIRED_VERSION="12.2"
+    MAJOR_VERSION=$(echo $CUDA_VERSION | cut -d. -f1)
+    MINOR_VERSION=$(echo $CUDA_VERSION | cut -d. -f2)
+    REQUIRED_MAJOR="12"
+    REQUIRED_MINOR="6"
 
-    if [ "$CUDA_VERSION" = "$REQUIRED_VERSION" ]; then
+    if [ "$MAJOR_VERSION" = "$REQUIRED_MAJOR" ] && [ "$MINOR_VERSION" = "$REQUIRED_MINOR" ]; then
         echo "✓ CUDA 版本检查通过：$CUDA_VERSION"
         return 0
     else
-        echo "✗ 错误：需要 CUDA $REQUIRED_VERSION，但当前版本是 $CUDA_VERSION"
+        echo "✗ 错误：需要 CUDA $REQUIRED_MAJOR.$REQUIRED_MINOR.x，但当前版本是 $CUDA_VERSION"
         return 1
     fi
 }

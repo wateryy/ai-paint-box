@@ -1,12 +1,12 @@
 # AI 绘图服务安装脚本
 
-这是一个用于在 CUDA 12.2 环境下安装和配置 ComfyUI 和 Stable Diffusion WebUI 的脚本集合。
+这是一个用于在 CUDA 12.6.x 环境下安装和配置 ComfyUI 和 Stable Diffusion WebUI 的脚本集合。
 
 ## 系统要求
 
 - Ubuntu 22.04
 - NVIDIA GPU
-- CUDA 12.2
+- CUDA 12.6.x
 
 ## 目录结构
 
@@ -26,7 +26,7 @@
 │       ├── comfyui.conf            # ComfyUI 服务配置
 │       └── sd-webui.conf           # SD WebUI 服务配置
 └── data/                  # 数据目录
-    ├��─ models/            # 共享模型目录
+    ├── models/            # 共享模型目录
     │   ├── checkpoints/  # 模型检查点
     │   ├── loras/       # LoRA 模型
     │   ├── controlnet/  # ControlNet 模型
@@ -47,7 +47,7 @@
 ### check_environment.sh
 检查系统环境是否满足要求：
 - Ubuntu 22.04
-- CUDA 12.2
+- CUDA 12.6.x
 - NVIDIA GPU 可用性
 
 ### install_base.sh
@@ -174,7 +174,7 @@ nginx -s reload   # 重新加载配置
 
 1. 如果环境检查失败：
    - 确认 Ubuntu 版本是否为 22.04
-   - 检查 CUDA 版本是否为 12.2
+   - 检查 CUDA 版本是否为 12.6.x
    - 验证 NVIDIA 驱动是否正确安装
 
 2. 如果服务启动失败：
