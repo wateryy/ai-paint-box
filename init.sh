@@ -4,6 +4,10 @@ set -e
 # 获取脚本所在目录的绝对路径
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+# 添加脚本执行权限
+chmod +x "$SCRIPT_DIR/scripts/"*.sh
+echo "已添加脚本执行权限"
+
 # 首先运行环境检查
 "$SCRIPT_DIR/scripts/check_environment.sh" || {
     echo "环境检查失败，安装终止"

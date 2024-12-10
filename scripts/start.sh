@@ -35,10 +35,7 @@ fi
 sleep 5
 
 # 重新加载配置
-supervisorctl reread
 supervisorctl update
-
-# 启动所有服务
 supervisorctl start all
 
 # 检查服务状态
@@ -47,6 +44,13 @@ supervisorctl status
 # 处理 nginx
 if command -v nginx &> /dev/null; then
     echo "nginx 已安装，正在重启..."
+    
+    # 备份并替换 nginx 配置
+    if [ -f /etc/nginx/nginx.conf ]; then
+        mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.backup
+    fi
+    cp "$CONFIG_DIR/nginx/nginx.conf" /etc/nginx/nginx.conf
+    
     if pgrep nginx > /dev/null; then
         nginx -s stop
         sleep 2
