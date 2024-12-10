@@ -5,6 +5,13 @@ source /workspace/venv/bin/activate
 
 # 安装 ComfyUI
 cd /workspace
+
+# 如果目录已存在，先删除
+if [ -d "ComfyUI" ]; then
+    echo "ComfyUI 目录已存在，正在删除..."
+    rm -rf ComfyUI
+fi
+
 git clone https://github.com/comfyanonymous/ComfyUI.git
 cd ComfyUI
 pip install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121

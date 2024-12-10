@@ -5,6 +5,13 @@ source /workspace/venv/bin/activate
 
 # 安装 Stable Diffusion WebUI
 cd /workspace
+
+# 如果目录已存在，先删除
+if [ -d "stable-diffusion-webui" ]; then
+    echo "stable-diffusion-webui 目录已存在，正在删除..."
+    rm -rf stable-diffusion-webui
+fi
+
 git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
 cd stable-diffusion-webui
 pip install --no-cache-dir -r requirements.txt
