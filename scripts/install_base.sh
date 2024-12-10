@@ -1,10 +1,6 @@
 #!/bin/bash
 set -e
 
-# 获取脚本所在目录的绝对路径
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-CONFIG_DIR="$SCRIPT_DIR/../config"
-
 # 安装系统依赖
 apt-get update && apt-get install -y \
     software-properties-common \
@@ -58,12 +54,6 @@ mkdir -p /workspace/data/models/{checkpoints,loras,controlnet,vae}  # 共享模�
 mkdir -p /workspace/data/comfyui/{models,output}  # ComfyUI 专用
 mkdir -p /workspace/data/sd/{models,output}  # SD WebUI 专用
 
-# 配置 Nginx
-# 备份原始配置
-mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.backup
-
-# 复制新的配置文件
-cp "$CONFIG_DIR/nginx/nginx.conf" /etc/nginx/nginx.conf
 
 # 创建日志目录
 mkdir -p /var/log/nginx
