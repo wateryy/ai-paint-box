@@ -9,7 +9,6 @@ CONFIG_DIR="$SCRIPT_DIR/../config"
 mkdir -p /etc/supervisor/conf.d
 
 # 复制 supervisor 配置文件
-# cp "$CONFIG_DIR/supervisord.conf" /etc/supervisor/supervisord.conf
 cp "$CONFIG_DIR/conf.d/"*.conf /etc/supervisor/conf.d/
 
 # 创建日志目录
@@ -19,8 +18,8 @@ mkdir -p /var/log/supervisor
 chown -R root:root /var/log/supervisor
 chmod -R 755 /var/log/supervisor
 
-# 启动 supervisor 服务
-service supervisor start || systemctl start supervisor
+# 直接启动 supervisord
+supervisord -c /etc/supervisor/supervisord.conf
 
 # 等待几秒让服务启动
 sleep 5
@@ -35,8 +34,8 @@ supervisorctl start all
 # 检查服务状态
 supervisorctl status
 
-# 启动 Nginx 服务
-service nginx start || systemctl start nginx
+# 直接启动 nginx
+nginx
 
 # 检查 Nginx 配置
 nginx -t
