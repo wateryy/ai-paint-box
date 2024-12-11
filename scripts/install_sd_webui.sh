@@ -20,19 +20,32 @@ cd stable-diffusion-webui
 pip install --no-cache-dir -r requirements_versions.txt
 pip install --no-cache-dir xformers
 
-# 处理模型目录
+# 处理所有模型目录
 echo "配置模型目录..."
-MODELS_DIR="models/Stable-diffusion"
-if [ -d "$MODELS_DIR" ] && [ ! -L "$MODELS_DIR" ]; then
-    echo "发现已存在的模型目录，正在备份..."
-    mv "$MODELS_DIR" "${MODELS_DIR}_backup_$(date +%Y%m%d_%H%M%S)"
+declare -A MODEL_DIRS=(
+    ["Stable-diffusion"]="checkpoints"
+    ["Lora"]="loras"
+    ["ControlNet"]="controlnet"
+    ["VAE"]="vae"
+)
+
+for SD_DIR in "${!MODEL_DIRS[@]}"; do
+    DATA_DIR="${MODEL_DIRS[$SD_DIR]}"
+    MODELS_DIR="models/$SD_DIR"
+    if [ -d "$MODELS_DIR" ] && [ ! -L "$MODELS_DIR" ]; then
+        echo "发现已存在的模型目录 $SD_DIR，正在复制到专用目录..."
+        mkdir -p "/workspace/data/sd/models/$DATA_DIR"
+        cp -r "$MODELS_DIR"/* "/workspace/data/sd/models/$DATA_DIR/" 2>/dev/null || true
+        rm -rf "$MODELS_DIR"
+    fi
+    ln -sf "/workspace/data/models/$DATA_DIR" "/workspace/stable-diffusion-webui/models/$SD_DIR"
+done
+
+# 处理输出目录
+echo "配置输出目录..."
+if [ -d "outputs" ] && [ ! -L "outputs" ]; then
+    echo "发现已存在的输出目录，正在复制到专用目录..."
+    cp -r outputs/* /workspace/data/sd/output/ 2>/dev/null || true
+    rm -rf outputs
 fi
-
-# 创建软链接
-ln -sf /workspace/data/models/checkpoints /workspace/stable-diffusion-webui/models/Stable-diffusion
-ln -sf /workspace/data/models/loras /workspace/stable-diffusion-webui/models/Lora
-ln -sf /workspace/data/models/controlnet /workspace/stable-diffusion-webui/models/ControlNet
-ln -sf /workspace/data/models/vae /workspace/stable-diffusion-webui/models/VAE
-
-# 链接专用输出目录
 ln -sf /workspace/data/sd/output /workspace/stable-diffusion-webui/outputs
