@@ -20,31 +20,44 @@ cd stable-diffusion-webui
 pip install --no-cache-dir -r requirements_versions.txt
 pip install --no-cache-dir xformers
 
-# 处理所有模型目录
-echo "配置模型目录..."
-declare -A MODEL_DIRS=(
-    ["Stable-diffusion"]="checkpoints"
-    ["Lora"]="loras"
-    ["ControlNet"]="controlnet"
-    ["VAE"]="vae"
+# 定义需要共享的目录映射关系
+declare -A SHARED_DIRS=(
+    ["models/clip"]="/workspace/data/models/clip"
+    ["models/Stable-diffusion"]="/workspace/data/models/Stable-diffusion"
+    ["models/clip_vision"]="/workspace/data/models/clip_vision"
+    ["models/configs"]="/workspace/data/models/configs"
+    ["models/controlnet"]="/workspace/data/models/controlnet"
+    ["models/photomaker"]="/workspace/data/models/photomaker"
+    ["models/lora-xl"]="/workspace/data/models/lora-xl"
+    ["models/vae-models"]="/workspace/data/models/vae-models"
+    ["models/animediff-models"]="/workspace/data/models/animediff-models"
+    ["models/animediff-models-lora"]="/workspace/data/models/animediff-models-lora"
+    ["embeddings"]="/workspace/data/embeddings"
 )
 
-for SD_DIR in "${!MODEL_DIRS[@]}"; do
-    DATA_DIR="${MODEL_DIRS[$SD_DIR]}"
-    MODELS_DIR="models/$SD_DIR"
-    if [ -d "$MODELS_DIR" ] && [ ! -L "$MODELS_DIR" ]; then
-        echo "发现已存在的模型目录 $SD_DIR，正在复制到专用目录..."
-        mkdir -p "/workspace/data/sd/models/$DATA_DIR"
-        cp -r "$MODELS_DIR"/* "/workspace/data/sd/models/$DATA_DIR/" 2>/dev/null || true
-        rm -rf "$MODELS_DIR"
+# 创建并链接目录
+echo "配置模型目录..."
+for SD_DIR in "${!SHARED_DIRS[@]}"; do
+    SHARED_DIR="${SHARED_DIRS[$SD_DIR]}"
+    
+    # 如果目录存在且不是软链接，复制内容到共享目录
+    if [ -d "$SD_DIR" ] && [ ! -L "$SD_DIR" ]; then
+        echo "发现目录 $SD_DIR，正在复制到共享目录..."
+        cp -r "$SD_DIR"/* "$SHARED_DIR/" 2>/dev/null || true
+        rm -rf "$SD_DIR"
     fi
-    ln -sf "/workspace/data/models/$DATA_DIR" "/workspace/stable-diffusion-webui/models/$SD_DIR"
+    
+    # 创建父目录（如果需要）
+    mkdir -p "$(dirname "$SD_DIR")"
+    
+    # 创建软链接到共享目录
+    ln -sf "$SHARED_DIR" "$SD_DIR"
 done
 
 # 处理输出目录
 echo "配置输出目录..."
 if [ -d "outputs" ] && [ ! -L "outputs" ]; then
-    echo "发现已存在的输出目录，正在复制到专用目录..."
+    echo "发现输出目录，正在复制到专用目录..."
     cp -r outputs/* /workspace/data/sd/output/ 2>/dev/null || true
     rm -rf outputs
 fi

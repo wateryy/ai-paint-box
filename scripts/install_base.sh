@@ -51,10 +51,14 @@ pip install --no-cache-dir \
     tqdm
 
 # 创建模型目录结构
-mkdir -p /workspace/data/models/{checkpoints,loras,controlnet,vae}  # 共享模型
-mkdir -p /workspace/data/comfyui/{models,output}  # ComfyUI 专用
-mkdir -p /workspace/data/sd/{models,output}  # SD WebUI 专用
+mkdir -p /workspace/data/models/{clip,Stable-diffusion,clip_vision,configs,controlnet}  # 基础模型目录
+mkdir -p /workspace/data/models/{photomaker,lora-xl,vae-models,gligen,hypernetworks}  # 扩展模型目录
+mkdir -p /workspace/data/models/{upscale-models}  # 其他模型目录
+mkdir -p /workspace/data/embeddings  # embeddings 目录
 
+# 创建输出目录
+mkdir -p /workspace/data/comfyui/output  # ComfyUI 输出
+mkdir -p /workspace/data/sd/output  # SD WebUI 输出
 
 # 创建日志目录
 mkdir -p /var/log/nginx
