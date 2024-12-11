@@ -3,7 +3,7 @@ set -e
 
 source /workspace/venv/bin/activate
 
-# 安装 Stable Diffusion WebUI
+# 安装 Stable Diffusion WebUI Forge
 cd /workspace
 
 # 如果目录已存在，先删除
@@ -12,9 +12,12 @@ if [ -d "stable-diffusion-webui" ]; then
     rm -rf stable-diffusion-webui
 fi
 
-git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
+# 克隆 Forge 仓库
+git clone https://github.com/lllyasviel/stable-diffusion-webui-forge.git stable-diffusion-webui
 cd stable-diffusion-webui
-pip install --no-cache-dir -r requirements.txt
+
+# 安装依赖
+pip install --no-cache-dir -r requirements_versions.txt
 pip install --no-cache-dir xformers
 
 # 创建软链接以共享模型
