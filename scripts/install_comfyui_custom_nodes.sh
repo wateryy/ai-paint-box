@@ -1,92 +1,100 @@
 #!/bin/bash
-set -e
 
-cd /workspace/ComfyUI/custom_nodes/
+CUSTOM_NODES_PATH="/workspace/ComfyUI/custom_nodes"
+mkdir -p "$CUSTOM_NODES_PATH"
+cd "$CUSTOM_NODES_PATH"
 
-echo "开始安装 ComfyUI 扩展..."
-
-# 函数：安装扩展
+# 安装扩展和依赖的函数
 install_extension() {
     local repo_url=$1
     local dir_name=$(basename $repo_url .git)
     echo "正在安装 $dir_name..."
+    
     if [ -d "$dir_name" ]; then
-        echo "目录已存在，正在更新..."
+        echo "$dir_name 已存在，正在更新..."
         cd "$dir_name"
         git pull
-        cd ..
     else
         git clone "$repo_url"
+        cd "$dir_name"
     fi
+
+    # 检查并安装依赖
+    if [ -f "requirements.txt" ]; then
+        echo "安装 $dir_name 的依赖..."
+        pip install -r requirements.txt
+    fi
+    
+    # 检查并运行安装脚本
+    if [ -f "install.py" ]; then
+        echo "运行 $dir_name 的安装脚本..."
+        python install.py
+    fi
+    
+    cd ..
 }
 
-echo "=== 安装核心扩展 ==="
-# ComfyUI Manager - 扩展管理器
-install_extension "https://github.com/ltdrdata/ComfyUI-Manager.git"
+echo "=== 开始安装自定义节点 ==="
 
-# Impact Pack - 核心功能增强
-install_extension "https://github.com/ltdrdata/ComfyUI-Impact-Pack.git"
+# 基础功能扩展
+install_extension "https://github.com/ltdrdata/ComfyUI-Manager"
+install_extension "https://github.com/ltdrdata/ComfyUI-Impact-Pack"
+install_extension "https://github.com/WASasquatch/was-node-suite-comfyui"
+install_extension "https://github.com/rgthree/rgthree-comfy"
+install_extension "https://github.com/cubiq/ComfyUI_essentials"
 
-# ComfyUI-Inspire-Pack - 功能扩展包
-install_extension "https://github.com/ltdrdata/ComfyUI-Inspire-Pack.git"
+# 图像处理和增强
+install_extension "https://github.com/kijai/ComfyUI-SUPIR.git"
+install_extension "https://github.com/ssitu/ComfyUI_UltimateSDUpscale"
+install_extension "https://github.com/ZHO-ZHO-ZHO/ComfyUI-APISR"
+install_extension "https://github.com/GreenLandisaLie/AuraSR-ComfyUI"
 
-# AIGODLIKE-COMFYUI-TRANSLATION - 中文汉化
-install_extension "https://github.com/AIGODLIKE/AIGODLIKE-COMFYUI-TRANSLATION.git"
-
-echo "=== 安装工作流工具 ==="
-# Workflow Manager - 工作流管理
-install_extension "https://github.com/ltdrdata/ComfyUI-Workflow-Component.git"
-
-# Custom Scripts - 高级工作流工具
-install_extension "https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git"
-
-# RGB Three - 工作流增强
-install_extension "https://github.com/rgthree/rgthree-comfy.git"
-
-echo "=== 安装图像处理工具 ==="
-# ControlNet 辅助工具
+# ControlNet 相关
+install_extension "https://github.com/Kosinkadink/ComfyUI-Advanced-ControlNet"
 install_extension "https://github.com/Fannovel16/comfyui_controlnet_aux.git"
 
-# Ultimate Upscale - 终极放大工具
-install_extension "https://github.com/ssitu/ComfyUI_UltimateSDUpscale.git"
-
-# Images Grid - 图像网格工具
-install_extension "https://github.com/LEv145/images-grid-comfy-plugin.git"
-
-# ReActor - 人脸替换工具
-install_extension "https://github.com/Gourieff/comfyui-reactor-node.git"
-
-# 图像后处理工具
-install_extension "https://github.com/BlenderNeko/ComfyUI_Cutoff.git"
-
-echo "=== 安装动画相关工具 ==="
-# Video Helper Suite - 视频处理工具
+# 动画和视频
+install_extension "https://github.com/Kosinkadink/ComfyUI-AnimateDiff-Evolved"
 install_extension "https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite.git"
 
-# AnimateDiff - 动画生成工具
-install_extension "https://github.com/Kosinkadink/ComfyUI-AnimateDiff-Evolved.git"
+# 人像和面部处理
+install_extension "https://github.com/ZHO-ZHO-ZHO/ComfyUI-InstantID"
+install_extension "https://github.com/cubiq/ComfyUI_InstantID"
+install_extension "https://github.com/cubiq/ComfyUI_FaceAnalysis.git"
+install_extension "https://github.com/PowerHouseMan/ComfyUI-AdvancedLivePortrait"
+install_extension "https://github.com/kijai/ComfyUI-LivePortraitKJ"
+install_extension "https://github.com/florestefano1975/comfyui-portrait-master.git"
 
-echo "=== 安装提示词工具 ==="
-# WD14 Tagger - 标签生成器
-install_extension "https://github.com/pythongosssss/ComfyUI-WD14-Tagger.git"
+# IPAdapter 相关
+install_extension "https://github.com/cubiq/ComfyUI_IPAdapter_plus.git"
+install_extension "https://github.com/Shakker-Labs/ComfyUI-IPAdapter-Flux"
 
-# Use Everywhere - 提示词工具
-install_extension "https://github.com/chrisgoringe/cg-use-everywhere.git"
+# 提示词和标签
+install_extension "https://github.com/pythongosssss/ComfyUI-WD14-Tagger"
+install_extension "https://github.com/adieyal/comfyui-dynamicprompts.git"
+install_extension "https://github.com/meap158/ComfyUI-Prompt-Expansion.git"
+install_extension "https://github.com/AIrjen/OneButtonPrompt.git"
 
-# 高级文本编码
-install_extension "https://github.com/BlenderNeko/ComfyUI_ADV_CLIP_emb.git"
+# 工作流和界面增强
+install_extension "https://github.com/11cafe/comfyui-workspace-manager"
+install_extension "https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git"
+install_extension "https://github.com/crystian/ComfyUI-Crystools"
 
-echo "=== 安装效率工具 ==="
-# Efficiency Nodes - 批处理工具
-install_extension "https://github.com/LucianoCirino/efficiency-nodes-comfyui.git"
+# 风格和效果
+install_extension "https://github.com/yichengup/Comfyui_Flux_Style_Adjust.git"
+install_extension "https://github.com/KoreTeknology/ComfyUI-Universal-Styler.git"
+install_extension "https://github.com/chflame163/ComfyUI_LayerStyle.git"
 
-# 工作区管理
-install_extension "https://github.com/11cafe/comfyui-workspace-manager.git"
+# AI 和模型集成
+install_extension "https://github.com/city96/ComfyUI-GGUF"
+install_extension "https://github.com/leoleelxh/ComfyUI-LLMs.git"
+install_extension "https://github.com/storyicon/comfyui_segment_anything.git"
 
-echo "所有扩展安装完成"
+# 其他实用工具
+install_extension "https://github.com/jags111/efficiency-nodes-comfyui"
+install_extension "https://github.com/erosDiffusion/ComfyUI-enricos-nodes"
+install_extension "https://github.com/kijai/ComfyUI-KJNodes"
+install_extension "https://github.com/SeargeDP/SeargeSDXL.git"
 
-# 重启 ComfyUI 服务
-echo "重启 ComfyUI 服务..."
-supervisorctl restart comfyui
-
-echo "ComfyUI 扩展安装完成并已重启服务"
+echo "=== 所有自定义节点安装完成 ==="
+echo "提示：某些节点可能需要下载额外的模型才能使用"
