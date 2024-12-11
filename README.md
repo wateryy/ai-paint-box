@@ -26,7 +26,7 @@
 │       ├── comfyui.conf            # ComfyUI 服务配置
 │       └── sd-webui.conf           # SD WebUI 服务配置
 └── data/                  # 数据目录
-    ���── models/            # 共享模型目录
+    ├── models/            # 共享模型目录
     │   ├── checkpoints/  # 模型检查点
     │   ├── loras/       # LoRA 模型
     │   ├── controlnet/  # ControlNet 模型
@@ -54,6 +54,8 @@
 安装基础环境：
 - Python 3.10 及依赖
 - 系统工具和库
+- vim 编辑器
+- git, wget, curl 等工具
 - 创建虚拟环境
 - 创建数据目录结构
 
@@ -79,7 +81,7 @@
 
 1. 确保系统满足要求：
 ```bash
-# 检查 CUDA 版���
+# 检查 CUDA 版本
 nvcc --version
 # 检查 GPU 状态
 nvidia-smi
@@ -148,7 +150,7 @@ geo $whitelist {
    - 未授权访问将返回 403 错误
 
 2. 访问限制
-   - 禁止直接访问根目录
+   - 禁止直��访问根目录
    - 只允许访问 /comfyui/ 和 /sd/ 路径
    - 其他所有请求将返回 404 错误
 

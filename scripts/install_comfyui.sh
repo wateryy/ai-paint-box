@@ -17,11 +17,21 @@ cd ComfyUI
 pip install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 pip install --no-cache-dir -r requirements.txt
 
-# 创建软链接以共享模型
-ln -s /workspace/data/models/checkpoints /workspace/ComfyUI/models/checkpoints
-ln -s /workspace/data/models/loras /workspace/ComfyUI/models/loras
-ln -s /workspace/data/models/controlnet /workspace/ComfyUI/models/controlnet
-ln -s /workspace/data/models/vae /workspace/ComfyUI/models/vae
+# 处理所有模型目录
+echo "配置模型目录..."
+for DIR in checkpoints loras controlnet vae; do
+    MODELS_DIR="models/$DIR"
+    if [ -d "$MODELS_DIR" ] && [ ! -L "$MODELS_DIR" ]; then
+        echo "发现已存在的模型目录 $DIR，正在备份..."
+        mv "$MODELS_DIR" "${MODELS_DIR}_backup_$(date +%Y%m%d_%H%M%S)"
+    fi
+    ln -sf "/workspace/data/models/$DIR" "/workspace/ComfyUI/models/$DIR"
+done
 
-# 链接专用输出目录
-ln -s /workspace/data/comfyui/output /workspace/ComfyUI/output
+# 处理输出目录
+echo "配置输出目录..."
+if [ -d "output" ] && [ ! -L "output" ]; then
+    echo "发现已存在的输出目录，正在备份..."
+    mv "output" "output_backup_$(date +%Y%m%d_%H%M%S)"
+fi
+ln -sf /workspace/data/comfyui/output /workspace/ComfyUI/output

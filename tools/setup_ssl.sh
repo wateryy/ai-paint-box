@@ -23,9 +23,27 @@ setup_letsencrypt() {
         exit 1
     fi
 
-    # 安装 certbot
+    # 移除旧的 certbot
+    apt-get remove -y certbot python3-certbot-nginx || true
+
+    # 安装依赖
     apt-get update
-    apt-get install -y certbot python3-certbot-nginx
+    apt-get install -y \
+        python3-venv \
+        python3-dev \
+        gcc \
+        libaugeas0 \
+        augeas-lenses \
+        libssl-dev \
+        libffi-dev \
+        ca-certificates
+
+    # 创建虚拟环境并安装 certbot
+    python3 -m venv /opt/certbot/
+    /opt/certbot/bin/pip install --no-cache-dir certbot certbot-nginx
+
+    # 创建符号链接
+    ln -sf /opt/certbot/bin/certbot /usr/local/bin/certbot
 
     # 申请证书
     certbot --nginx \
@@ -35,9 +53,8 @@ setup_letsencrypt() {
         -d "$DOMAIN" \
         --redirect
 
-    # 配置自动续期
-    systemctl enable certbot.timer
-    systemctl start certbot.timer
+    # 添加自动续期的 cron 任务
+    echo "0 0,12 * * * /usr/local/bin/certbot renew -q" | crontab -
 
     echo "Let's Encrypt 证书配置完成"
 }

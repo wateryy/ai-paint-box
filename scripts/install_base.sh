@@ -13,6 +13,7 @@ apt-get update && apt-get install -y \
     git \
     wget \
     curl \
+    vim \
     libgl1-mesa-dev \
     libglib2.0-0 \
     libsm6 \
