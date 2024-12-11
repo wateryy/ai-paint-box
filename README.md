@@ -26,7 +26,7 @@
 │       ├── comfyui.conf            # ComfyUI 服务配置
 │       └── sd-webui.conf           # SD WebUI 服务配置
 └── data/                  # 数据目录
-    ├── models/            # 共享模型目录
+    ���── models/            # 共享模型目录
     │   ├── checkpoints/  # 模型检查点
     │   ├── loras/       # LoRA 模型
     │   ├── controlnet/  # ControlNet 模型
@@ -79,7 +79,7 @@
 
 1. 确保系统满足要求：
 ```bash
-# 检查 CUDA 版本
+# 检查 CUDA 版���
 nvcc --version
 # 检查 GPU 状态
 nvidia-smi
@@ -124,8 +124,8 @@ supervisorctl restart sd-webui
 
 服务通过 Nginx 代理，只允许白名单 IP 访问：
 
-- ComfyUI: `http://<your-server>:10066/comfyui/`
-- Stable Diffusion WebUI: `http://<your-server>:10066/sd/`
+- ComfyUI: `http://<your-server>:10066`
+- Stable Diffusion WebUI Forge: `http://<your-server>:10067`
 
 ### IP 白名单配置
 

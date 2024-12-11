@@ -45,12 +45,19 @@ supervisorctl status
 if command -v nginx &> /dev/null; then
     echo "nginx 已安装，正在重启..."
     
-    # 备份并替换 nginx 配置
-    if [ -f /etc/nginx/nginx.conf ]; then
-        mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.backup
-    fi
+    # 创建必要的目录
+    mkdir -p /etc/nginx/sites-available
+    mkdir -p /etc/nginx/sites-enabled
+
+    # 复制配置文件
     cp "$CONFIG_DIR/nginx/nginx.conf" /etc/nginx/nginx.conf
-    
+    cp "$CONFIG_DIR/nginx/sites-available/"*.conf /etc/nginx/sites-available/
+
+    # 创建软链接
+    ln -sf /etc/nginx/sites-available/comfyui.conf /etc/nginx/sites-enabled/
+    ln -sf /etc/nginx/sites-available/sd-webui.conf /etc/nginx/sites-enabled/
+
+    # 重启 nginx
     if pgrep nginx > /dev/null; then
         nginx -s stop
         sleep 2
