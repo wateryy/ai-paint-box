@@ -52,7 +52,7 @@ pip install --no-cache-dir \
 
 # 创建模型目录结构
 mkdir -p /workspace/data/models/{clip,Stable-diffusion,clip_vision,configs,controlnet}  # 基础模型目录
-mkdir -p /workspace/data/models/{photomaker,lora-xl,vae-models,gligen,hypernetworks}  # 扩展模型目录
+mkdir -p /workspace/data/models/{photomaker,lora,lora-xl,vae-models,gligen,hypernetworks}  # 扩展模型目录
 mkdir -p /workspace/data/models/{upscale-models}  # 其他模型目录
 mkdir -p /workspace/data/embeddings  # embeddings 目录
 
