@@ -18,6 +18,7 @@ echo "已添加脚本执行权限"
 "$SCRIPT_DIR/scripts/install_base.sh"
 "$SCRIPT_DIR/scripts/install_sd_webui.sh"
 "$SCRIPT_DIR/scripts/install_comfyui.sh"
+"$SCRIPT_DIR/scripts/install_sd_webui_extensions.sh"
 "$SCRIPT_DIR/scripts/install_comfyui_custom_nodes.sh"
 "$SCRIPT_DIR/scripts/start.sh"
 
