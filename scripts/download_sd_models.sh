@@ -84,18 +84,6 @@ download_model "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/
 download_model "https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0/resolve/main/sd_xl_refiner_1.0.safetensors" \
     "sd_xl_refiner_1.0.safetensors"
 
-# SD 1.5
-download_model "https://huggingface.co/runwayml/stable-diffusion-v1-5/resolve/main/v1-5-pruned.safetensors" \
-    "v1-5-pruned.safetensors"
-
-echo "=== 开始下载热门模型 ==="
-# Realistic Vision
-download_model "https://huggingface.co/SG161222/Realistic_Vision_V5.1_noVAE/resolve/main/Realistic_Vision_V5.1.safetensors" \
-    "realisticVisionV51_v51VAE.safetensors"
-
-# DreamShaper
-download_model "https://huggingface.co/Lykon/DreamShaper/resolve/main/DreamShaper_8_pruned.safetensors" \
-    "dreamshaper_8.safetensors"
 
 echo "=== 开始下载 VAE 模型 ==="
 cd "$VAE_MODELS_DIR"

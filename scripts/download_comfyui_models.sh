@@ -42,8 +42,6 @@ check_url() {
 declare -A MODEL_URLS=(
     ["sd_xl_base_1.0.safetensors"]="https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors"
     ["sd_xl_refiner_1.0.safetensors"]="https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0/resolve/main/sd_xl_refiner_1.0.safetensors"
-    ["v1-5-pruned.safetensors"]="https://huggingface.co/runwayml/stable-diffusion-v1-5/resolve/main/v1-5-pruned.safetensors"
-    # ... (添加所有其他模型的 URL)
 )
 
 # 在开始下载前检查所有链接
