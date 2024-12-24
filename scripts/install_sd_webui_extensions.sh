@@ -62,7 +62,7 @@ echo "所有扩展安装完成"
 
 # 重启 SD WebUI 服务
 echo "重启 SD WebUI 服务..."
-supervisorctl restart sd-webui
+# supervisorctl restart sd-webui
 
 echo "SD WebUI 扩展安装完成并已重启服务"
 
