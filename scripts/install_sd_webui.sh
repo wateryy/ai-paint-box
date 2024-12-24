@@ -22,7 +22,7 @@ pip install --no-cache-dir xformers
 
 # 定义需要共享的目录映射关系
 declare -A SHARED_DIRS=(
-    ["models/clip"]="/workspace/data/models/clip"
+    ["models/text_encoder"]="/workspace/data/models/clip"
     ["models/Stable-diffusion"]="/workspace/data/models/Stable-diffusion"
     ["models/clip_vision"]="/workspace/data/models/clip_vision"
     ["models/configs"]="/workspace/data/models/configs"

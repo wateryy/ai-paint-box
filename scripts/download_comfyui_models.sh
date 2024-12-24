@@ -141,62 +141,62 @@ mkdir -p "$COMFYUI_MODELS_DIR/vae_approx"
 cd "$COMFYUI_MODELS_DIR/vae_approx"
 
 # TAESD
-echo "下载 TAESD 模型..."
-download_model "https://huggingface.co/madebyollin/taesd/resolve/main/model.safetensors" \
-    "taesd_encoder.pth"
-# 对于 decoder，使用相同的文件
-cp "taesd_encoder.pth" "taesd_decoder.pth"
+# echo "下载 TAESD 模型..."
+# download_model "https://huggingface.co/madebyollin/taesd/resolve/main/model.safetensors" \
+#     "taesd_encoder.pth"
+# # 对于 decoder，使用相同的文件
+# cp "taesd_encoder.pth" "taesd_decoder.pth"
 
 # TAESDXL
-echo "下载 TAESDXL 模型..."
-download_model "https://huggingface.co/madebyollin/taesdxl/resolve/main/model.safetensors" \
-    "taesdxl_encoder.pth"
-# 对于 decoder，使用相同��文件
-cp "taesdxl_encoder.pth" "taesdxl_decoder.pth"
+# echo "下载 TAESDXL 模型..."
+# download_model "https://huggingface.co/madebyollin/taesdxl/resolve/main/model.safetensors" \
+#     "taesdxl_encoder.pth"
+# # 对于 decoder，使用相同��文件
+# cp "taesdxl_encoder.pth" "taesdxl_decoder.pth"
 
 echo "=== 开始下载人脸修复模型 ==="
 mkdir -p "$COMFYUI_MODELS_DIR/facerestore_models"
 cd "$COMFYUI_MODELS_DIR/facerestore_models"
 
 # RestoreFormer - 使用 GitHub 官方链接
-echo "下载 RestoreFormer 模型..."
-download_model "https://github.com/wzhouxiff/RestoreFormer/releases/download/v1.0/RestoreFormer.pth" \
-    "RestoreFormer.pth"
+# echo "下载 RestoreFormer 模型..."
+# download_model "https://github.com/wzhouxiff/RestoreFormer/releases/download/v1.0/RestoreFormer.pth" \
+#     "RestoreFormer.pth"
 
 # 人脸检测模型
 echo "=== 开始下载人脸检测模型 ==="
 
 # YuNet 人脸检测模型 - 使用 OpenCV 官方链接
-echo "下载 YuNet 模型..."
-download_model "https://github.com/opencv/opencv_zoo/raw/main/models/face_detection_yunet/face_detection_yunet_2023mar.onnx" \
-    "yunet_120x160.onnx"
+# echo "下载 YuNet 模型..."
+# download_model "https://github.com/opencv/opencv_zoo/raw/main/models/face_detection_yunet/face_detection_yunet_2023mar.onnx" \
+#     "yunet_120x160.onnx"
 
 # MediaPipe Face Detection 模型
-echo "下载 MediaPipe 人脸检测模型..."
-download_model "https://storage.googleapis.com/mediapipe-models/face_detector/blaze_face_short_range/float16/1/blaze_face_short_range.tflite" \
-    "blaze_face_short_range.tflite"
+# echo "下载 MediaPipe 人脸检测模型..."
+# download_model "https://storage.googleapis.com/mediapipe-models/face_detector/blaze_face_short_range/float16/1/blaze_face_short_range.tflite" \
+#     "blaze_face_short_range.tflite"
 
 # InsightFace 模型
-echo "下载 InsightFace 模型..."
-download_model "https://github.com/deepinsight/insightface/releases/download/v0.7/buffalo_l.zip" \
-    "buffalo_l.zip"
+# echo "下载 InsightFace 模型..."
+# download_model "https://github.com/deepinsight/insightface/releases/download/v0.7/buffalo_l.zip" \
+#     "buffalo_l.zip"
 
 echo "=== 开始下载 LoRA 模型 ==="
 cd "$MODELS_ROOT/lora-xl"
 
 # 更新 Hyper-FLUX 链接
-download_model "https://civitai.com/api/download/models/198530" \
-    "Hyper-FLUX.1-dev-8steps-lora.safetensors"
+# download_model "https://civitai.com/api/download/models/198530" \
+#     "Hyper-FLUX.1-dev-8steps-lora.safetensors"
 
 # SigCLIP Vision
-echo "下载 SigCLIP Vision..."
-download_model "https://huggingface.co/openai/clip-vit-large-patch14/resolve/main/pytorch_model.bin" \
-    "sigclip_vision_patch14_384.pth"
+# echo "下载 SigCLIP Vision..."
+# download_model "https://huggingface.co/openai/clip-vit-large-patch14/resolve/main/pytorch_model.bin" \
+#     "sigclip_vision_patch14_384.pth"
 
 # T5 编码器 - 使用 t5-large 替代
 echo "下载 T5 编码器..."
-download_model "https://huggingface.co/t5-large/resolve/main/pytorch_model.bin" \
-    "t5_xxl_encoderonly_fp8_e4m3fn.pth"
+# download_model "https://huggingface.co/t5-large/resolve/main/pytorch_model.bin" \
+#     "t5_xxl_encoderonly_fp8_e4m3fn.pth"
 
 echo "=== 开始下载 Ultralytics 模型 ==="
 mkdir -p "$COMFYUI_MODELS_DIR/ultralytics_bbox"
@@ -204,82 +204,82 @@ cd "$COMFYUI_MODELS_DIR/ultralytics_bbox"
 
 # YOLOv8 不同规模的模型
 echo "下载 YOLOv8 模型..."
-download_model "https://github.com/ultralytics/assets/releases/download/v0.0.0/yolov8n.pt" \
-    "yolov8n.pt"
-download_model "https://github.com/ultralytics/assets/releases/download/v0.0.0/yolov8s.pt" \
-    "yolov8s.pt"
-download_model "https://github.com/ultralytics/assets/releases/download/v0.0.0/yolov8m.pt" \
-    "yolov8m.pt"
-download_model "https://github.com/ultralytics/assets/releases/download/v0.0.0/yolov8l.pt" \
-    "yolov8l.pt"
-download_model "https://github.com/ultralytics/assets/releases/download/v0.0.0/yolov8x.pt" \
-    "yolov8x.pt"
+# download_model "https://github.com/ultralytics/assets/releases/download/v0.0.0/yolov8n.pt" \
+#     "yolov8n.pt"
+# download_model "https://github.com/ultralytics/assets/releases/download/v0.0.0/yolov8s.pt" \
+#     "yolov8s.pt"
+# download_model "https://github.com/ultralytics/assets/releases/download/v0.0.0/yolov8m.pt" \
+#     "yolov8m.pt"
+# download_model "https://github.com/ultralytics/assets/releases/download/v0.0.0/yolov8l.pt" \
+#     "yolov8l.pt"
+# download_model "https://github.com/ultralytics/assets/releases/download/v0.0.0/yolov8x.pt" \
+#     "yolov8x.pt"
 
 
 mkdir -p "$COMFYUI_MODELS_DIR/ultralytics_segm"
 cd "$COMFYUI_MODELS_DIR/ultralytics_segm"
 
 echo "下载 YOLOv8 分割模型..."
-download_model "https://github.com/ultralytics/assets/releases/download/v0.0.0/yolov8n-seg.pt" \
-    "yolov8n-seg.pt"
-download_model "https://github.com/ultralytics/assets/releases/download/v0.0.0/yolov8s-seg.pt" \
-    "yolov8s-seg.pt"
-download_model "https://github.com/ultralytics/assets/releases/download/v0.0.0/yolov8m-seg.pt" \
-    "yolov8m-seg.pt"
-download_model "https://github.com/ultralytics/assets/releases/download/v0.0.0/yolov8l-seg.pt" \
-    "yolov8l-seg.pt"
-download_model "https://github.com/ultralytics/assets/releases/download/v0.0.0/yolov8x-seg.pt" \
-    "yolov8x-seg.pt"
+# download_model "https://github.com/ultralytics/assets/releases/download/v0.0.0/yolov8n-seg.pt" \
+#     "yolov8n-seg.pt"
+# download_model "https://github.com/ultralytics/assets/releases/download/v0.0.0/yolov8s-seg.pt" \
+#     "yolov8s-seg.pt"
+# download_model "https://github.com/ultralytics/assets/releases/download/v0.0.0/yolov8m-seg.pt" \
+#     "yolov8m-seg.pt"
+# download_model "https://github.com/ultralytics/assets/releases/download/v0.0.0/yolov8l-seg.pt" \
+#     "yolov8l-seg.pt"
+# download_model "https://github.com/ultralytics/assets/releases/download/v0.0.0/yolov8x-seg.pt" \
+#     "yolov8x-seg.pt"
 
 mkdir -p "$COMFYUI_MODELS_DIR/ultralytics_pose"
 cd "$COMFYUI_MODELS_DIR/ultralytics_pose"
 
 echo "下载 YOLOv8 姿态检测模型..."
-download_model "https://github.com/ultralytics/assets/releases/download/v0.0.0/yolov8n-pose.pt" \
-    "yolov8n-pose.pt"
-download_model "https://github.com/ultralytics/assets/releases/download/v0.0.0/yolov8s-pose.pt" \
-    "yolov8s-pose.pt"
-download_model "https://github.com/ultralytics/assets/releases/download/v0.0.0/yolov8m-pose.pt" \
-    "yolov8m-pose.pt"
-download_model "https://github.com/ultralytics/assets/releases/download/v0.0.0/yolov8l-pose.pt" \
-    "yolov8l-pose.pt"
-download_model "https://github.com/ultralytics/assets/releases/download/v0.0.0/yolov8x-pose.pt" \
-    "yolov8x-pose.pt"
+# download_model "https://github.com/ultralytics/assets/releases/download/v0.0.0/yolov8n-pose.pt" \
+#     "yolov8n-pose.pt"
+# download_model "https://github.com/ultralytics/assets/releases/download/v0.0.0/yolov8s-pose.pt" \
+#     "yolov8s-pose.pt"
+# download_model "https://github.com/ultralytics/assets/releases/download/v0.0.0/yolov8m-pose.pt" \
+#     "yolov8m-pose.pt"
+# download_model "https://github.com/ultralytics/assets/releases/download/v0.0.0/yolov8l-pose.pt" \
+#     "yolov8l-pose.pt"
+# download_model "https://github.com/ultralytics/assets/releases/download/v0.0.0/yolov8x-pose.pt" \
+#     "yolov8x-pose.pt"
 
 mkdir -p "$COMFYUI_MODELS_DIR/ultralytics_cls"
 cd "$COMFYUI_MODELS_DIR/ultralytics_cls"
 
 echo "下载 YOLOv8 分类模型..."
-download_model "https://github.com/ultralytics/assets/releases/download/v0.0.0/yolov8n-cls.pt" \
-    "yolov8n-cls.pt"
-download_model "https://github.com/ultralytics/assets/releases/download/v0.0.0/yolov8s-cls.pt" \
-    "yolov8s-cls.pt"
-download_model "https://github.com/ultralytics/assets/releases/download/v0.0.0/yolov8m-cls.pt" \
-    "yolov8m-cls.pt"
-download_model "https://github.com/ultralytics/assets/releases/download/v0.0.0/yolov8l-cls.pt" \
-    "yolov8l-cls.pt"
-download_model "https://github.com/ultralytics/assets/releases/download/v0.0.0/yolov8x-cls.pt" \
-    "yolov8x-cls.pt"
+# download_model "https://github.com/ultralytics/assets/releases/download/v0.0.0/yolov8n-cls.pt" \
+#     "yolov8n-cls.pt"
+# download_model "https://github.com/ultralytics/assets/releases/download/v0.0.0/yolov8s-cls.pt" \
+#     "yolov8s-cls.pt"
+# download_model "https://github.com/ultralytics/assets/releases/download/v0.0.0/yolov8m-cls.pt" \
+#     "yolov8m-cls.pt"
+# download_model "https://github.com/ultralytics/assets/releases/download/v0.0.0/yolov8l-cls.pt" \
+#     "yolov8l-cls.pt"
+# download_model "https://github.com/ultralytics/assets/releases/download/v0.0.0/yolov8x-cls.pt" \
+#     "yolov8x-cls.pt"
 
 echo "=== 开始下载 SAM 模型 ==="
 mkdir -p "$COMFYUI_MODELS_DIR/sams"
 cd "$COMFYUI_MODELS_DIR/sams"
 
-echo "下载 SAM ViT-H 模型..."
-download_model "https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth" \
-    "sam_vit_h.pth"
+# echo "下载 SAM ViT-H 模型..."
+# download_model "https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth" \
+#     "sam_vit_h.pth"
 
-echo "下载 SAM ViT-L 模型..."
-download_model "https://dl.fbaipublicfiles.com/segment_anything/sam_vit_l_0b3195.pth" \
-    "sam_vit_l.pth"
+# echo "下载 SAM ViT-L 模型..."
+# download_model "https://dl.fbaipublicfiles.com/segment_anything/sam_vit_l_0b3195.pth" \
+#     "sam_vit_l.pth"
 
-echo "下载 SAM ViT-B 模型..."
-download_model "https://dl.fbaipublicfiles.com/segment_anything/sam_vit_b_01ec64.pth" \
-    "sam_vit_b.pth"
+# echo "下载 SAM ViT-B 模型..."
+# download_model "https://dl.fbaipublicfiles.com/segment_anything/sam_vit_b_01ec64.pth" \
+#     "sam_vit_b.pth"
 
-echo "下载 MobileSAM 模型..."
-download_model "https://github.com/ChaoningZhang/MobileSAM/raw/master/weights/mobile_sam.pt" \
-    "mobile_sam.pt"
+# echo "下载 MobileSAM 模型..."
+# download_model "https://github.com/ChaoningZhang/MobileSAM/raw/master/weights/mobile_sam.pt" \
+#     "mobile_sam.pt"
 
 echo "=== 开始下载 VHS 视式文件 ==="
 VHS_DIR="/workspace/ComfyUI/custom_nodes/ComfyUI-VideoHelperSuite/video_formats"
@@ -288,107 +288,107 @@ cd "$VHS_DIR"
 
 echo "下载视频格式配置..."
 # 使用正确的 raw GitHub 链接
-download_model "https://raw.githubusercontent.com/Kosinkadink/ComfyUI-VideoHelperSuite/main/video_formats/1080p_30fps_h264.json" \
-    "1080p_30fps_h264.json"
-download_model "https://raw.githubusercontent.com/Kosinkadink/ComfyUI-VideoHelperSuite/main/video_formats/1080p_60fps_h264.json" \
-    "1080p_60fps_h264.json"
-download_model "https://raw.githubusercontent.com/Kosinkadink/ComfyUI-VideoHelperSuite/main/video_formats/4k_30fps_h264.json" \
-    "4k_30fps_h264.json"
-download_model "https://raw.githubusercontent.com/Kosinkadink/ComfyUI-VideoHelperSuite/main/video_formats/4k_60fps_h264.json" \
-    "4k_60fps_h264.json"
-download_model "https://raw.githubusercontent.com/Kosinkadink/ComfyUI-VideoHelperSuite/main/video_formats/720p_30fps_h264.json" \
-    "720p_30fps_h264.json"
-download_model "https://raw.githubusercontent.com/Kosinkadink/ComfyUI-VideoHelperSuite/main/video_formats/720p_60fps_h264.json" \
-    "720p_60fps_h264.json"
-download_model "https://raw.githubusercontent.com/Kosinkadink/ComfyUI-VideoHelperSuite/main/video_formats/gif.json" \
-    "gif.json"
+# download_model "https://raw.githubusercontent.com/Kosinkadink/ComfyUI-VideoHelperSuite/main/video_formats/1080p_30fps_h264.json" \
+#     "1080p_30fps_h264.json"
+# download_model "https://raw.githubusercontent.com/Kosinkadink/ComfyUI-VideoHelperSuite/main/video_formats/1080p_60fps_h264.json" \
+#     "1080p_60fps_h264.json"
+# download_model "https://raw.githubusercontent.com/Kosinkadink/ComfyUI-VideoHelperSuite/main/video_formats/4k_30fps_h264.json" \
+#     "4k_30fps_h264.json"
+# download_model "https://raw.githubusercontent.com/Kosinkadink/ComfyUI-VideoHelperSuite/main/video_formats/4k_60fps_h264.json" \
+#     "4k_60fps_h264.json"
+# download_model "https://raw.githubusercontent.com/Kosinkadink/ComfyUI-VideoHelperSuite/main/video_formats/720p_30fps_h264.json" \
+#     "720p_30fps_h264.json"
+# download_model "https://raw.githubusercontent.com/Kosinkadink/ComfyUI-VideoHelperSuite/main/video_formats/720p_60fps_h264.json" \
+#     "720p_60fps_h264.json"
+# download_model "https://raw.githubusercontent.com/Kosinkadink/ComfyUI-VideoHelperSuite/main/video_formats/gif.json" \
+#     "gif.json"
 
 # 如果下载失败，我们可以接创建这些配置文件
-if [ ! -f "1080p_30fps_h264.json" ]; then
-    echo '{
-        "name": "1080p 30fps h264",
-        "extension": "mp4",
-        "codec": "libx264",
-        "crf": 23,
-        "preset": "medium",
-        "width": 1920,
-        "height": 1080,
-        "fps": 30
-    }' > "1080p_30fps_h264.json"
-fi
+# if [ ! -f "1080p_30fps_h264.json" ]; then
+#     echo '{
+#         "name": "1080p 30fps h264",
+#         "extension": "mp4",
+#         "codec": "libx264",
+#         "crf": 23,
+#         "preset": "medium",
+#         "width": 1920,
+#         "height": 1080,
+#         "fps": 30
+#     }' > "1080p_30fps_h264.json"
+# fi
 
-if [ ! -f "1080p_60fps_h264.json" ]; then
-    echo '{
-        "name": "1080p 60fps h264",
-        "extension": "mp4",
-        "codec": "libx264",
-        "crf": 23,
-        "preset": "medium",
-        "width": 1920,
-        "height": 1080,
-        "fps": 60
-    }' > "1080p_60fps_h264.json"
-fi
+# if [ ! -f "1080p_60fps_h264.json" ]; then
+#     echo '{
+#         "name": "1080p 60fps h264",
+#         "extension": "mp4",
+#         "codec": "libx264",
+#         "crf": 23,
+#         "preset": "medium",
+#         "width": 1920,
+#         "height": 1080,
+#         "fps": 60
+#     }' > "1080p_60fps_h264.json"
+# fi
 
-if [ ! -f "4k_30fps_h264.json" ]; then
-    echo '{
-        "name": "4K 30fps h264",
-        "extension": "mp4",
-        "codec": "libx264",
-        "crf": 23,
-        "preset": "medium",
-        "width": 3840,
-        "height": 2160,
-        "fps": 30
-    }' > "4k_30fps_h264.json"
-fi
+# if [ ! -f "4k_30fps_h264.json" ]; then
+#     echo '{
+#         "name": "4K 30fps h264",
+#         "extension": "mp4",
+#         "codec": "libx264",
+#         "crf": 23,
+#         "preset": "medium",
+#         "width": 3840,
+#         "height": 2160,
+#         "fps": 30
+#     }' > "4k_30fps_h264.json"
+# fi
 
-if [ ! -f "4k_60fps_h264.json" ]; then
-    echo '{
-        "name": "4K 60fps h264",
-        "extension": "mp4",
-        "codec": "libx264",
-        "crf": 23,
-        "preset": "medium",
-        "width": 3840,
-        "height": 2160,
-        "fps": 60
-    }' > "4k_60fps_h264.json"
-fi
+# if [ ! -f "4k_60fps_h264.json" ]; then
+#     echo '{
+#         "name": "4K 60fps h264",
+#         "extension": "mp4",
+#         "codec": "libx264",
+#         "crf": 23,
+#         "preset": "medium",
+#         "width": 3840,
+#         "height": 2160,
+#         "fps": 60
+#     }' > "4k_60fps_h264.json"
+# fi
 
-if [ ! -f "720p_30fps_h264.json" ]; then
-    echo '{
-        "name": "720p 30fps h264",
-        "extension": "mp4",
-        "codec": "libx264",
-        "crf": 23,
-        "preset": "medium",
-        "width": 1280,
-        "height": 720,
-        "fps": 30
-    }' > "720p_30fps_h264.json"
-fi
+# if [ ! -f "720p_30fps_h264.json" ]; then
+#     echo '{
+#         "name": "720p 30fps h264",
+#         "extension": "mp4",
+#         "codec": "libx264",
+#         "crf": 23,
+#         "preset": "medium",
+#         "width": 1280,
+#         "height": 720,
+#         "fps": 30
+#     }' > "720p_30fps_h264.json"
+# fi
 
-if [ ! -f "720p_60fps_h264.json" ]; then
-    echo '{
-        "name": "720p 60fps h264",
-        "extension": "mp4",
-        "codec": "libx264",
-        "crf": 23,
-        "preset": "medium",
-        "width": 1280,
-        "height": 720,
-        "fps": 60
-    }' > "720p_60fps_h264.json"
-fi
+# if [ ! -f "720p_60fps_h264.json" ]; then
+#     echo '{
+#         "name": "720p 60fps h264",
+#         "extension": "mp4",
+#         "codec": "libx264",
+#         "crf": 23,
+#         "preset": "medium",
+#         "width": 1280,
+#         "height": 720,
+#         "fps": 60
+#     }' > "720p_60fps_h264.json"
+# fi
 
-if [ ! -f "gif.json" ]; then
-    echo '{
-        "name": "GIF",
-        "extension": "gif",
-        "fps": 10
-    }' > "gif.json"
-fi
+# if [ ! -f "gif.json" ]; then
+#     echo '{
+#         "name": "GIF",
+#         "extension": "gif",
+#         "fps": 10
+#     }' > "gif.json"
+# fi
 
 echo "所有模型下载完成"
 echo "提示：可以通过 Civitai 等平台下载更多模型" 

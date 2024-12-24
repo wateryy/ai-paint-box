@@ -79,22 +79,22 @@ cd "$SD_MODELS_DIR"
 
 echo "=== 开始下载基础模型 ==="
 # SDXL 基础模型
-download_model "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors" \
-    "sd_xl_base_1.0.safetensors"
-download_model "https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0/resolve/main/sd_xl_refiner_1.0.safetensors" \
-    "sd_xl_refiner_1.0.safetensors"
+# download_model "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors" \
+#     "sd_xl_base_1.0.safetensors"
+# download_model "https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0/resolve/main/sd_xl_refiner_1.0.safetensors" \
+#     "sd_xl_refiner_1.0.safetensors"
 
 
 echo "=== 开始下载 VAE 模型 ==="
 cd "$VAE_MODELS_DIR"
 
 # SDXL VAE
-download_model "https://huggingface.co/madebyollin/sdxl-vae-fp16-fix/resolve/main/sdxl_vae.safetensors" \
-    "sdxl_vae.safetensors"
+# download_model "https://huggingface.co/madebyollin/sdxl-vae-fp16-fix/resolve/main/sdxl_vae.safetensors" \
+#     "sdxl_vae.safetensors"
 
-# kl-f8-anime VAE
-download_model "https://huggingface.co/hakurei/waifu-diffusion-v1-4/resolve/main/vae/kl-f8-anime2.ckpt" \
-    "kl-f8-anime.vae.pt"
+# # kl-f8-anime VAE
+# download_model "https://huggingface.co/hakurei/waifu-diffusion-v1-4/resolve/main/vae/kl-f8-anime2.ckpt" \
+#     "kl-f8-anime.vae.pt"
 
 # 创建 Text Encoder 目录
 mkdir -p "$MODELS_ROOT/text-encoder"
@@ -103,37 +103,37 @@ cd "$MODELS_ROOT/text-encoder"
 echo "=== 开始下载 Text Encoder 模型 ==="
 
 # CLIP Text Encoder
-download_model "https://huggingface.co/openai/clip-vit-large-patch14/resolve/main/pytorch_model.bin" \
-    "clip-vit-large-patch14.bin"
+# download_model "https://huggingface.co/openai/clip-vit-large-patch14/resolve/main/pytorch_model.bin" \
+#     "clip-vit-large-patch14.bin"
 
 # CLIP Vision Encoder
-download_model "https://huggingface.co/openai/clip-vit-large-patch14/resolve/main/preprocessor_config.json" \
-    "clip-vit-large-patch14-preprocessor.json"
+# download_model "https://huggingface.co/openai/clip-vit-large-patch14/resolve/main/preprocessor_config.json" \
+#     "clip-vit-large-patch14-preprocessor.json"
 
 # T5 Text Encoder
-download_model "https://huggingface.co/DeepFloyd/t5-v1_1-xxl/resolve/main/config.json" \
-    "t5-v1_1-xxl-config.json"
+# download_model "https://huggingface.co/DeepFloyd/t5-v1_1-xxl/resolve/main/config.json" \
+#     "t5-v1_1-xxl-config.json"
 
 # BERT Text Encoder
-download_model "https://huggingface.co/bert-base-uncased/resolve/main/pytorch_model.bin" \
-    "bert-base-uncased.bin"
-download_model "https://huggingface.co/bert-base-uncased/resolve/main/config.json" \
-    "bert-base-uncased-config.json"
+# download_model "https://huggingface.co/bert-base-uncased/resolve/main/pytorch_model.bin" \
+#     "bert-base-uncased.bin"
+# download_model "https://huggingface.co/bert-base-uncased/resolve/main/config.json" \
+#     "bert-base-uncased-config.json"
 
 echo "=== 开始下载常用 LoRA ==="
 cd "$LORA_MODELS_DIR"
 
 # Detail Tweaker
-download_model "https://civitai.com/api/download/models/87153" \
-    "detail_tweaker_xl.safetensors"
+# download_model "https://civitai.com/api/download/models/87153" \
+#     "detail_tweaker_xl.safetensors"
 
-# Add Detail
-download_model "https://civitai.com/api/download/models/135867" \
-    "add_detail.safetensors"
+# # Add Detail
+# download_model "https://civitai.com/api/download/models/135867" \
+#     "add_detail.safetensors"
 
-# SDXL Offset Noise
-download_model "https://civitai.com/api/download/models/134485" \
-    "offset_noise.safetensors"
+# # SDXL Offset Noise
+# download_model "https://civitai.com/api/download/models/134485" \
+#     "offset_noise.safetensors"
 
 echo "所有模型下载完成"
 echo "提示：可以通过 Civitai 等平台下载更多模型" 

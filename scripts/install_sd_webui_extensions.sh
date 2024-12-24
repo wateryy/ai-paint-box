@@ -22,16 +22,16 @@ install_extension() {
 
 echo "=== 安装图像增强工具 ==="
 # ControlNet - 图像控制
-install_extension "https://github.com/Mikubill/sd-webui-controlnet.git"
+# install_extension "https://github.com/Mikubill/sd-webui-controlnet.git"
 
 # Ultimate SD Upscale - 图像放大
-install_extension "https://github.com/Coyote-A/ultimate-upscale-for-automatic1111.git"
+# install_extension "https://github.com/Coyote-A/ultimate-upscale-for-automatic1111.git"
 
 # After Detailer - 面部优化
-install_extension "https://github.com/Bing-su/adetailer.git"
+# install_extension "https://github.com/Bing-su/adetailer.git"
 
 # Dynamic Thresholding - 动态阈值
-install_extension "https://github.com/mcmonkeyprojects/sd-dynamic-thresholding.git"
+# install_extension "https://github.com/mcmonkeyprojects/sd-dynamic-thresholding.git"
 
 echo "=== 安装界面优化工具 ==="
 # Image Browser - 图片浏览器
@@ -45,14 +45,14 @@ install_extension "https://github.com/kohya-ss/sd-webui-additional-networks.git"
 
 echo "=== 安装提示词工具 ==="
 # Tag Complete - 标签补全
-install_extension "https://github.com/DominikDoom/a1111-sd-webui-tagcomplete.git"
+# install_extension "https://github.com/DominikDoom/a1111-sd-webui-tagcomplete.git"
 
 # Wildcards - 随机提示词
-install_extension "https://github.com/AUTOMATIC1111/stable-diffusion-webui-wildcards.git"
+# install_extension "https://github.com/AUTOMATIC1111/stable-diffusion-webui-wildcards.git"
 
 echo "=== 安装工作流工具 ==="
 # Regional Prompter - 区域提示词
-install_extension "https://github.com/hako-mikan/sd-webui-regional-prompter.git"
+# install_extension "https://github.com/hako-mikan/sd-webui-regional-prompter.git"
 
 echo "=== 安装本地化工具 ==="
 # SD WebUI 中文本地化
